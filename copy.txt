@@ -1,0 +1,1 @@
+xcopy D:\workspace\hightech_hrip2\portal\src\main\webapp\WEB-INF\templates /s D:\tomcat\apache-tomcat-7.0.68\webapps\portal\WEB-INF\templates  /e/h/y

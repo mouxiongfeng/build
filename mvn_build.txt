@@ -1,0 +1,16 @@
+@echo ¡¾------First,shutdown tomcat service------¡¿
+call D:\tomcat\apache-tomcat-7.0.68\bin\shutdown.bat
+@echo ¡¾------Second,clean up webapps and work------¡¿
+rd /s /q D:\tomcat\apache-tomcat-7.0.68\webapps\
+rd /s /q D:\tomcat\apache-tomcat-7.0.68\work\Catalina\localhost\
+md D:\tomcat\apache-tomcat-7.0.68\webapps
+@echo ¡¾------Third,compile project and package it------¡¿
+D:
+cd D:\workspace\hightech_hrip2\client
+call mvn clean install
+cd ../portal
+call mvn clean package -Dmaven.test.skip=true -Denv=local
+pause 
+@echo ¡¾------Fourth,deploy project and start it------¡¿
+copy D:\workspace\hightech_hrip2\portal\target\portal.war D:\tomcat\apache-tomcat-7.0.68\webapps
+call D:\tomcat\apache-tomcat-7.0.68\bin\startup.bat
